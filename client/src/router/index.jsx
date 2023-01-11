@@ -34,7 +34,7 @@ export default createBrowserRouter([
         element: <Register/>
     },
     {
-        path:"*",
-        element:<h1>404 | Not found</h1>
-    }
+        path: "*",
+        element: <h1>404 | Not found</h1>
+    },
 ])

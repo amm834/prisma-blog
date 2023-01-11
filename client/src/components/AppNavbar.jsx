@@ -1,5 +1,6 @@
 import React from 'react';
 import {Navbar, Dropdown, Avatar} from "flowbite-react";
+import {Link} from "react-router-dom";
 
 const AppNavbar = () => {
     return (
@@ -8,14 +9,14 @@ const AppNavbar = () => {
                 fluid={true}
                 rounded={true}
             >
-                <Navbar.Brand href="https://flowbite.com/">
+                <Navbar.Brand>
                     <img
                         src="https://flowbite.com/docs/images/logo.svg"
                         className="mr-3 h-6 sm:h-9"
                         alt="Flowbite Logo"
                     />
                     <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-      Flowbite
+                              <Link to="/">Shop</Link>
     </span>
                 </Navbar.Brand>
                 <div className="flex md:order-2">
@@ -52,23 +53,20 @@ const AppNavbar = () => {
                 </div>
                 <Navbar.Collapse>
                     <Navbar.Link
-                        href="/navbars"
                         active={true}
                     >
-                        Home
+                        <Link to="/">Home</Link>
                     </Navbar.Link>
-                    <Navbar.Link href="/navbars">
-                        About
+                    <Navbar.Link href="/#">
+                        <Link to="/posts/create">Write</Link>
                     </Navbar.Link>
-                    <Navbar.Link href="/navbars">
-                        Services
+                    <Navbar.Link href="/#">
+                        <Link to="/register">Register</Link>
                     </Navbar.Link>
-                    <Navbar.Link href="/navbars">
-                        Pricing
+                    <Navbar.Link href="/#">
+                        <Link to="/login">Login</Link>
                     </Navbar.Link>
-                    <Navbar.Link href="/navbars">
-                        Contact
-                    </Navbar.Link>
+
                 </Navbar.Collapse>
             </Navbar>
         </>
