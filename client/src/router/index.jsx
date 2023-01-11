@@ -5,6 +5,7 @@ import CreatePost from "../pages/CreatePost.jsx";
 import MainLayout from "../layouts/MainLayout.jsx";
 import Home from "../pages/Home.jsx";
 import PostById from "../pages/PostById.jsx";
+import NotFound from "../components/NotFound.jsx";
 
 export default createBrowserRouter([
     {
@@ -35,6 +36,6 @@ export default createBrowserRouter([
     },
     {
         path: "*",
-        element: <h1>404 | Not found</h1>
+        element: <NotFound/>
     },
 ])
