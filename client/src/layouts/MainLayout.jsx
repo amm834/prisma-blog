@@ -7,7 +7,9 @@ const MainLayout = () => {
     return (
         <>
             <AppNavbar/>
-            <Outlet/>
+            <main className="container mx-auto mt-12 px-8">
+                <Outlet/>
+            </main>
             <AppFooter/>
         </>
     );

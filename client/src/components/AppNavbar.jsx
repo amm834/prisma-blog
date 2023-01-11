@@ -38,12 +38,6 @@ const AppNavbar = () => {
                         <Dropdown.Item>
                             Dashboard
                         </Dropdown.Item>
-                        <Dropdown.Item>
-                            Settings
-                        </Dropdown.Item>
-                        <Dropdown.Item>
-                            Earnings
-                        </Dropdown.Item>
                         <Dropdown.Divider/>
                         <Dropdown.Item>
                             Sign out
@@ -57,7 +51,7 @@ const AppNavbar = () => {
                     >
                         <Link to="/">Home</Link>
                     </Navbar.Link>
-                    <Navbar.Link href="/#">
+                    <Navbar.Link>
                         <Link to="/posts/create">Write</Link>
                     </Navbar.Link>
                     <Navbar.Link href="/#">
