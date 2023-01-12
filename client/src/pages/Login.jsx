@@ -1,7 +1,9 @@
 import React, {useState} from 'react';
-import {Alert, Button, Checkbox, Label, TextInput} from "flowbite-react";
-import http from "../../services/axios";
+import {Alert, Button, Label, TextInput} from "flowbite-react";
 import {Link, useNavigate} from "react-router-dom";
+import {useLogin} from "../services/auth.service.js";
+import {useAtom} from "jotai";
+import {userAtomWithPersistence} from "../store/userAtom.js";
 
 function HiInformationCircle(prop) {
     return <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
@@ -17,6 +19,9 @@ function HiInformationCircle(prop) {
 const Login = () => {
 
     const navigate = useNavigate();
+    const login = useLogin()
+    const [user, setUser] = useAtom(userAtomWithPersistence)
+
     const [inputs, setInputs] = useState({
         email: "",
         password: "",
@@ -31,12 +36,14 @@ const Login = () => {
     const onSubmit = async (e) => {
         e.preventDefault();
 
-        try {
-            await http.post("auth/login", inputs)
-            // navigate("/")
-        } catch (error) {
-            setError(error.response.data.msg)
-        }
+        login.mutate(inputs, {
+            onSuccess: (res) => {
+                setUser(res.data?.user)
+                navigate("/")
+            },
+        })
+
+
     };
 
 
@@ -45,20 +52,22 @@ const Login = () => {
 
             <form className="flex flex-col gap-4 bg-gray-50 p-10  rounded-xl shadow" onSubmit={onSubmit} method="POST">
 
+                <h1 className="mb-3 text-center text-2xl font-semibold text-blue-600">Login</h1>
+
+                {/* error */}
                 {
-                    error && <Alert
+                    login.isError && <Alert
                         color="failure"
                         icon={HiInformationCircle}
                         className="max-w-sm"
                     >
                         <p>
-                            <span className="font-medium">Info alert!</span>
-                            {' '}{error && error}
+                            <span className="font-medium">Error</span>
+                            {' '}{login.error}
                         </p>
                     </Alert>
                 }
 
-                <h1 className="mb-3 text-center text-2xl font-semibold text-blue-600">Login</h1>
 
                 <div>
                     <div className="mb-2 block">

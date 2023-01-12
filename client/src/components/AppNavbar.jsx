@@ -1,8 +1,21 @@
 import React from 'react';
 import {Navbar, Dropdown, Avatar} from "flowbite-react";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
+import {useAtom} from "jotai";
+import {userAtomWithPersistence} from "../store/userAtom.js";
+import {useLogout} from "../services/auth.service.js";
 
 const AppNavbar = () => {
+    const navigate = useNavigate()
+    const [user, setUser] = useAtom(userAtomWithPersistence);
+    const logout = useLogout({})
+    const logoutUser = () => {
+        logout.mutate({})
+        setUser(null)
+        navigate("/login")
+    }
+
+
     return (
         <>
             <Navbar
@@ -29,19 +42,19 @@ const AppNavbar = () => {
                     >
                         <Dropdown.Header>
         <span className="block text-sm">
-          Bonnie Green
+         {user?.name}
         </span>
                             <span className="block truncate text-sm font-medium">
-          name@flowbite.com
+                                {user?.email}
         </span>
                         </Dropdown.Header>
                         <Dropdown.Item>
                             Dashboard
                         </Dropdown.Item>
                         <Dropdown.Divider/>
-                        <Dropdown.Item>
+                        {user && <Dropdown.Item onClick={logoutUser}>
                             Sign out
-                        </Dropdown.Item>
+                        </Dropdown.Item>}
                     </Dropdown>
                     <Navbar.Toggle/>
                 </div>
@@ -54,12 +67,15 @@ const AppNavbar = () => {
                     <Navbar.Link>
                         <Link to="/posts/create">Write</Link>
                     </Navbar.Link>
-                    <Navbar.Link href="/#">
-                        <Link to="/register">Register</Link>
-                    </Navbar.Link>
-                    <Navbar.Link href="/#">
-                        <Link to="/login">Login</Link>
-                    </Navbar.Link>
+                    {!user && (<>
+                            <Navbar.Link href="/#">
+                                <Link to="/register">Register</Link>
+                            </Navbar.Link>
+                            <Navbar.Link href="/#">
+                                <Link to="/login">Login</Link>
+                            </Navbar.Link>
+                        </>
+                    )}
 
                 </Navbar.Collapse>
             </Navbar>

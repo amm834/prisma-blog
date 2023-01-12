@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Alert, Button, Checkbox, Label, TextInput} from "flowbite-react";
-import http from "../../services/axios";
+import http from "../services/http.service.js";
 import {Link, useNavigate} from "react-router-dom";
 
 function HiInformationCircle(prop) {
