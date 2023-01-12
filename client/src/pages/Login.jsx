@@ -32,8 +32,8 @@ const Login = () => {
         e.preventDefault();
 
         try {
-            await http.post("auth/register", inputs)
-            navigate("/login")
+            await http.post("auth/login", inputs)
+            // navigate("/")
         } catch (error) {
             setError(error.response.data.msg)
         }
