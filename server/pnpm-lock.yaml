@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@faker-js/faker': ^7.6.0
   '@prisma/client': ^4.8.1
   '@types/bcrypt': ^5.0.0
   '@types/body-parser': ^1.19.2
@@ -32,6 +33,7 @@ dependencies:
   jsonwebtoken: 9.0.0
 
 devDependencies:
+  '@faker-js/faker': 7.6.0
   '@types/body-parser': 1.19.2
   '@types/cookie-parser': 1.4.3
   '@types/cors': 2.8.13
@@ -63,6 +65,11 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
+
+  /@faker-js/faker/7.6.0:
+    resolution: {integrity: sha512-XK6BTq1NDMo9Xqw/YkYyGjSsg44fbNwYRx7QK2CuoQgyy+f1rrTDHoExVM5PsyXCtfl2vs2vVJ0MN0yN6LppRw==}
+    engines: {node: '>=14.0.0', npm: '>=6.0.0'}
+    dev: true
 
   /@mapbox/node-pre-gyp/1.0.10:
     resolution: {integrity: sha512-4ySo4CjzStuprMwk35H5pPbkymjv1SF3jGLj6rAHp/xT/RF7TL7bd9CTm1xDY49K2qF7jmR/g7k+SkLETP6opA==}
