@@ -2,7 +2,19 @@ import prisma from "../services/prisma.js";
 import {Request, Response} from "express";
 
 export const getAllPosts = async (req: Request, res: Response) => {
-    const posts = await prisma.post.findMany();
+    const posts = await prisma.post.findMany({
+        orderBy: {
+            id: 'desc',
+        },
+        include: {
+            category: true,
+            user: {
+                select: {
+                    name: true,
+                }
+            },
+        }
+    });
     res.json({posts});
 }
 

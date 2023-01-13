@@ -8,6 +8,7 @@ const Home = () => {
         ['getAllPosts'],
         () => http.get('/posts').then(res => res.data),
     );
+
     return (
         <section className="bg-white dark:bg-gray-900">
             <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
