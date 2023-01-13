@@ -32,6 +32,11 @@ const CreatePost = () => {
     };
 
     const onSubmit = async (e) => {
+
+        if (!inputs.category_id) {
+            alert('Please select a category')
+            return
+        }
         try {
             e.preventDefault()
             inputs.content = value

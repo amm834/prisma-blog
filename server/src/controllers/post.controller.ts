@@ -20,8 +20,8 @@ export const getAllPosts = async (req: Request, res: Response) => {
 
 export const createPost = async (req: Request, res: Response) => {
     const {title, content, category_id, user_id} = req.body;
-    if (!title || !content) {
-        return res.status(400).json({message: "Title and content are required"});
+    if (!title || !content || !category_id || !user_id) {
+        return res.status(400).json({message: "Title and content and category_id and user_id are required"});
     }
 
     const post = await prisma.post.create({
