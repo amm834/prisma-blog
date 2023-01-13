@@ -17,11 +17,14 @@
     "import": "./dist/index.js",
     "node": "./dist/index.cjs"
   },
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
+  },
   "scripts": {
     "watch:tsup": "tsup src/index.ts --config tsup.config.ts --watch",
     "watch:nodemon": "nodemon dist/index.js",
-    "serve": "concurrently npm:watch:tsup npm:watch:nodemon",
-    "build": "tsc -b && tsup"
+    "dev": "concurrently npm:watch:tsup npm:watch:nodemon",
+    "build": "tsc --noemit && tsup"
   },
   "keywords": [],
   "author": "Aung Myat Moe",

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import {Button, Card, Label, Radio, TextInput} from "flowbite-react";
+import {Button, Card, FileInput, Label, Radio, TextInput} from "flowbite-react";
 
 
 const CreatePost = () => {
@@ -15,6 +15,12 @@ const CreatePost = () => {
                         type="text"
                         required={true}
                         placeholder="Title"
+                    />
+                </div>
+                <div id="fileUpload" className="mb-3">
+                    <FileInput
+                        id="file"
+                        helperText="Upload a featured image"
                     />
                 </div>
                 <ReactQuill theme="snow" value={value} onChange={setValue} className="h-48"/>
@@ -74,14 +80,6 @@ const CreatePost = () => {
                                 </a>
                             </li>
                         </ul>
-                        <div>
-                            <a
-                                href="#"
-                                className="inline-flex items-center text-xs font-normal text-gray-500 hover:underline dark:text-gray-400"
-                            >
-                                Upload Image at here
-                            </a>
-                        </div>
                         <div className="flex justify-between">
                             <Button
                                 outline={true}
