@@ -6,7 +6,7 @@ import {formateDate} from "../lib/date.js";
 
 const PostById = () => {
     const {id} = useParams();
-    const {data, isLoading} = useQuery(
+    const {data,} = useQuery(
         ['post', id],
         () => http.get(`/posts/${id}`).then(res => res.data),
     )
@@ -28,7 +28,7 @@ const PostById = () => {
                                         <a href="#" rel="author"
                                            className="text-xl font-bold text-gray-900 dark:text-white">{data?.post?.user?.name}</a>
                                         <p className="text-base font-light text-gray-500 dark:text-gray-400">
-                                            <time pubdate dateTime="2022-02-08" title="February 8th, 2022">
+                                            <time  dateTime="2022-02-08" title="February 8th, 2022">
                                                 {formateDate(data?.post?.createdAt)}
                                             </time>
                                         </p>
