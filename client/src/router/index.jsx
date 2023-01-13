@@ -6,6 +6,11 @@ import MainLayout from "../layouts/MainLayout.jsx";
 import Home from "../pages/Home.jsx";
 import PostById from "../pages/PostById.jsx";
 import NotFound from "../components/NotFound.jsx";
+import GuardedRouter from "./GurardedRouter.jsx";
+import {useAtom} from "jotai";
+import {userAtomWithPersistence} from "../store/userAtom.js";
+import GuestRouter from "./GuestRouter.jsx";
+
 
 export default createBrowserRouter([
     {
@@ -18,7 +23,7 @@ export default createBrowserRouter([
             },
             {
                 path: "/posts/create",
-                element: <CreatePost/>
+                element: <GuardedRouter><CreatePost/></GuardedRouter>
             },
             {
                 path: "/posts/:id",
@@ -28,14 +33,14 @@ export default createBrowserRouter([
     },
     {
         path: "/login",
-        element: <Login/>
+        element: <GuestRouter> <Login/></GuestRouter>
     },
     {
         path: "/register",
-        element: <Register/>
+        element: <GuestRouter><Register/></GuestRouter>
     },
     {
         path: "*",
-        element: <NotFound/>
+        element: <NotFound/>,
     },
 ])
