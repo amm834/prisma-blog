@@ -2,6 +2,7 @@ import React from 'react';
 import {useParams} from "react-router-dom";
 import {useQuery} from "@tanstack/react-query";
 import http from "../services/http.service.js";
+import {formateDate} from "../lib/date.js";
 
 const PostById = () => {
     const {id} = useParams();
@@ -27,8 +28,8 @@ const PostById = () => {
                                         <a href="#" rel="author"
                                            className="text-xl font-bold text-gray-900 dark:text-white">{data?.post?.user?.name}</a>
                                         <p className="text-base font-light text-gray-500 dark:text-gray-400">
-                                            <time pubdate dateTime="2022-02-08" title="February 8th, 2022">Feb. 8,
-                                                2022
+                                            <time pubdate dateTime="2022-02-08" title="February 8th, 2022">
+                                                {formateDate(data?.post?.createdAt)}
                                             </time>
                                         </p>
                                     </div>

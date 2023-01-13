@@ -8,6 +8,7 @@ specifiers:
   '@vitejs/plugin-react-swc': ^3.0.1
   autoprefixer: ^10.4.13
   axios: ^1.2.2
+  dayjs: ^1.11.7
   flowbite: ^1.6.2
   flowbite-react: ^0.3.7
   flowbite-typography: ^1.0.3
@@ -24,6 +25,7 @@ specifiers:
 dependencies:
   '@tanstack/react-query': 4.22.0_biqbaboplfbrettd7655fr4n2y
   axios: 1.2.2
+  dayjs: 1.11.7
   flowbite: 1.6.2
   flowbite-react: 0.3.7_yxpgahbfy5vq4vthd54clpzluu
   jotai: 1.13.0_react@18.2.0
@@ -1008,6 +1010,10 @@ packages:
     transitivePeerDependencies:
       - '@swc/core'
       - '@swc/wasm'
+    dev: false
+
+  /dayjs/1.11.7:
+    resolution: {integrity: sha512-+Yw9U6YO5TQohxLcIkrXBeY73WP3ejHWVvx8XCk3gxvQDCTEmS48ZrSZCKciI7Bhl/uCMyxYtE9UqRILmFphkQ==}
     dev: false
 
   /debounce/1.2.1:
