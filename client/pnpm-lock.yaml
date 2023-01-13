@@ -10,6 +10,7 @@ specifiers:
   axios: ^1.2.2
   flowbite: ^1.6.2
   flowbite-react: ^0.3.7
+  flowbite-typography: ^1.0.3
   jotai: ^1.13.0
   postcss: ^8.4.21
   react: ^18.2.0
@@ -38,6 +39,7 @@ devDependencies:
   '@types/react-dom': 18.0.10
   '@vitejs/plugin-react-swc': 3.0.1_vite@4.0.4
   autoprefixer: 10.4.13_postcss@8.4.21
+  flowbite-typography: 1.0.3_tailwindcss@3.2.4
   postcss: 8.4.21
   tailwindcss: 3.2.4_postcss@8.4.21
   vite: 4.0.4
@@ -1245,6 +1247,17 @@ packages:
       - '@types/react'
     dev: false
 
+  /flowbite-typography/1.0.3_tailwindcss@3.2.4:
+    resolution: {integrity: sha512-UbdQFIIOb7xx2TS+QQrqr79B6ZSkSZurxYWzV0npth6Wns3/j7KfeDJoH9QFU+Zs7zjrvejNtyzgzWLWyCrdiA==}
+    peerDependencies:
+      tailwindcss: '>=3.0.0 || insiders'
+    dependencies:
+      lodash.castarray: 4.4.0
+      lodash.isplainobject: 4.0.6
+      lodash.merge: 4.6.2
+      tailwindcss: 3.2.4_postcss@8.4.21
+    dev: true
+
   /flowbite/1.6.2:
     resolution: {integrity: sha512-a/hB/fyG6m+EsMWpCaKOtFZGeQef+JLPS854DdFYitct8MNPnW5YKIOBQnIroyMtn60jOeMINg/XU1yh6m4pxw==}
     dependencies:
@@ -1626,10 +1639,12 @@ packages:
     dev: false
     optional: true
 
+  /lodash.castarray/4.4.0:
+    resolution: {integrity: sha512-aVx8ztPv7/2ULbArGJ2Y42bG1mEQ5mGjpdvrbJcJFU3TbYybe+QlLS4pst9zV52ymy2in1KpFPiZnAOATxD4+Q==}
+    dev: true
+
   /lodash.isplainobject/4.0.6:
     resolution: {integrity: sha512-oSXzaWypCMHkPC3NvBEaPHf0KsA5mvPrOPgQWDsbg8n7orZ290M0BmC/jgRZ4vcJ6DTAhjrsSYgdsW/F+MFOBA==}
-    dev: false
-    optional: true
 
   /lodash.map/4.6.0:
     resolution: {integrity: sha512-worNHGKLDetmcEYDvh2stPCrrQRkP20E4l0iIS7F8EvzMqBBi7ltvFN5m1HvTf1P7Jk1txKhvFcmYsCr8O2F1Q==}
@@ -1637,8 +1652,6 @@ packages:
 
   /lodash.merge/4.6.2:
     resolution: {integrity: sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==}
-    dev: false
-    optional: true
 
   /lodash.mergewith/4.6.2:
     resolution: {integrity: sha512-GK3g5RPZWTRSeLSpgP8Xhra+pnjBC56q9FZYe1d5RN3TJ35dbkGy3YqBSMbyCrlbi+CM9Z3Jk5yTL7RCsqboyQ==}
