@@ -1,7 +1,7 @@
-import {Router} from 'express';
+import {IRouter, Router} from 'express';
 import {login, logout, register} from '../controllers/auth.controller.js';
 
-export const router: Router = Router();
+export const router: IRouter = Router();
 
 router.post('/auth/register', register);
 router.post('/auth/login', login);

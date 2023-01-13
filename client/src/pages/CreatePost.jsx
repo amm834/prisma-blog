@@ -2,19 +2,58 @@ import React, {useState} from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import {Button, Card, FileInput, Label, Radio, TextInput} from "flowbite-react";
+import {useQuery} from "@tanstack/react-query";
+import http from "../services/http.service";
+import {useAtom} from "jotai";
+import {userAtomWithPersistence} from "../store/userAtom.js";
+import {useNavigate} from "react-router-dom";
 
 
 const CreatePost = () => {
-    const [value, setValue] = useState('');
+    const navigate = useNavigate();
+    const [user, setUser] = useAtom(userAtomWithPersistence)
+    const [value, setValue] = useState(''); // for quill
+    const {data} = useQuery(
+        ['getCategories'],
+        async () => await http.get('/categories').then(res => res.data),
+    )
+
+
+    const [inputs, setInputs] = useState({
+        title: '',
+        content: '',
+        category_id: '',
+        user_id: '',
+    })
+
+
+    const handleInputChange = (e) => {
+        setInputs((prev) => ({...prev, [e.target.name]: e.target.value}));
+    };
+
+    const onSubmit = async (e) => {
+        try {
+            e.preventDefault()
+            inputs.content = value
+            inputs.user_id = user?.id
+
+            await http.post('/posts/create', inputs)
+            navigate("/")
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     return (
-        <section className="grid grid-cols-12 gap-x-12">
+        <form className="grid grid-cols-12 gap-x-12" onSubmit={onSubmit}>
             <div className="col-span-8">
                 <div className="mb-3">
                     <TextInput
                         type="text"
                         required={true}
                         placeholder="Title"
+                        name="title"
+                        onChange={handleInputChange}
                     />
                 </div>
                 <div id="fileUpload" className="mb-3">
@@ -90,6 +129,7 @@ const CreatePost = () => {
                             <Button
                                 outline={true}
                                 gradientDuoTone="purpleToBlue"
+                                type="submit"
                             >
                                 Publish
                             </Button>
@@ -102,70 +142,32 @@ const CreatePost = () => {
                     <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                         Category
                     </h5>
+
                     <fieldset
                         className="flex flex-col gap-4"
                         id="radio"
                     >
-                        <div className="mt-4 flex items-center gap-2">
+                        {data?.categories && data?.categories?.map(category => <div
+                            key={category.id}
+                            className="mt-4 flex items-center gap-2"
+                        >
                             <Radio
                                 id="united-state"
-                                name="countries"
-                                value="USA"
-                                defaultChecked={true}
+                                value={category.id}
+                                name="category_id"
+                                onChange={handleInputChange}
                             />
                             <Label htmlFor="united-state">
-                                United States
+                                {category?.name}
                             </Label>
-                        </div>
-                        <div className="flex items-center gap-2">
-                            <Radio
-                                id="germany"
-                                name="countries"
-                                value="Germany"
-                            />
-                            <Label htmlFor="germany">
-                                Germany
-                            </Label>
-                        </div>
-                        <div className="flex items-center gap-2">
-                            <Radio
-                                id="spain"
-                                name="countries"
-                                value="Spain"
-                            />
-                            <Label htmlFor="spain">
-                                Spain
-                            </Label>
-                        </div>
-                        <div className="flex items-center gap-2">
-                            <Radio
-                                id="uk"
-                                name="countries"
-                                value="United Kingdom"
-                            />
-                            <Label htmlFor="uk">
-                                United Kingdom
-                            </Label>
-                        </div>
-                        <div className="flex items-center gap-2">
-                            <Radio
-                                id="china"
-                                name="countries"
-                                value="China"
-                                disabled={true}
-                            />
-                            <Label
-                                htmlFor="china"
-                                disabled={true}
-                            >
-                                China (disabled)
-                            </Label>
-                        </div>
+                        </div>)}
+
+
                     </fieldset>
                 </Card>
             </div>
 
-        </section>
+        </form>
     );
 };
 

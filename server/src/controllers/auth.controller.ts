@@ -12,6 +12,7 @@ async function getUserByEmail(email: string) {
             email: true,
             password: true,
             name: true,
+            id: true
         }
     });
 }
@@ -71,7 +72,10 @@ export const login = async (req: Request, res: Response) => {
             httpOnly: true
         })
             .status(200)
-            .jsonp({msg: "Login successfully", user: {email: existedUser?.email, name: existedUser?.name}});
+            .jsonp({
+                msg: "Login successfully",
+                user: {email: existedUser?.email, name: existedUser?.name, id: existedUser?.id}
+            });
 
     } catch (error) {
         return res.status(400).jsonp({error})
